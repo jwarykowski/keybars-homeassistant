@@ -6,12 +6,18 @@ on:
   pull_request:
   workflow_dispatch:
 
+# Home Assistant needs Python 3.14; its image has no Node for the checkout
+# action, so git fetches the commit itself
 jobs:
   check:
     runs-on: ubuntu-latest
     container:
       image: python:3.14
     steps:
-      - uses: https://code.forgejo.org/actions/checkout@v4
+      - name: checkout
+        run: |
+          git init -q .
+          git fetch -q --depth 1 "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" "$GITHUB_REF"
+          git checkout -q FETCH_HEAD
       - run: python -m venv .venv && .venv/bin/pip install -q -r requirements-test.txt
       - run: make check
