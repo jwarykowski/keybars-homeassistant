@@ -1,0 +1,54 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "keybars Pro",
+        "description": "In keybars Pro: Connections, Home Assistant (or Any webhook). Copy the webhook address, and the secret if it shows one.",
+        "data": {
+          "address": "Webhook address",
+          "secret": "Secret",
+          "prefix": "Event prefix"
+        },
+        "data_description": {
+          "address": "https://…/h/…, from keybars Pro's Home Assistant page",
+          "secret": "Only if keybars Pro asks for it",
+          "prefix": "Events go out as <prefix>.<event>, e.g. home.doorbell, as keybars Pro's Home Assistant rules expect"
+        }
+      }
+    },
+    "error": {
+      "not_an_address": "That isn't a keybars webhook address: it starts with https:// and has /h/ in it.",
+      "not_found": "There's no webhook at that address. Copy it again from keybars Pro.",
+      "secret_needed": "This webhook needs its secret, or the secret is wrong.",
+      "cannot_connect": "Couldn't reach keybars' relay."
+    },
+    "abort": {
+      "already_configured": "This webhook is already set up.",
+      "single_instance_allowed": "keybars is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": { "prefix": "Event prefix" },
+        "data_description": { "prefix": "Events go out as <prefix>.<event>, e.g. home.doorbell" }
+      }
+    }
+  },
+  "entity": {
+    "notify": {
+      "keybars": { "name": "keybars Pro" }
+    }
+  },
+  "services": {
+    "send_event": {
+      "name": "Send event",
+      "description": "Sends an event to keybars Pro's alert rules, e.g. doorbell, which goes as home.doorbell.",
+      "fields": {
+        "event": { "name": "Event", "description": "The event's name; the prefix is added." },
+        "repo": { "name": "Repository", "description": "Optional: what it's about, e.g. a room, for rules that name one." },
+        "branch": { "name": "Branch", "description": "Optional: a second detail, for rules that name one." }
+      }
+    }
+  }
+}

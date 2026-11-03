@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.14
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - run: python -m venv .venv && .venv/bin/pip install -q -r requirements-test.txt
+      - run: make check

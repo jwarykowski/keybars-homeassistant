@@ -1,0 +1,14 @@
+send_event:
+  fields:
+    event:
+      required: true
+      example: doorbell
+      selector:
+        text:
+    repo:
+      example: kitchen
+      selector:
+        text:
+    branch:
+      selector:
+        text:

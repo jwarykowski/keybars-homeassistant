@@ -1,0 +1,14 @@
+{
+  "domain": "keybars",
+  "name": "keybars",
+  "codeowners": ["@jwarykowski"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/jwarykowski/keybars-homeassistant",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/jwarykowski/keybars-homeassistant/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}
